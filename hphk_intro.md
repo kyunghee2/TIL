@@ -1,7 +1,9 @@
-2019.10.21=================================================
 
-## 해피해킹 과정
+# 해피해킹 과정
 
+## 2019.10.21
+
+#### 개발환경 설정
 - 개발환경 확인
 	- git bash > python -V
 	Python 3.7.4
@@ -79,10 +81,11 @@ git commit -m "191021 | TIL 시작"
 ##### 검색엔진 최적화
 - SEO, Search Engine Optimization 
 
-2019.10.22======================================
+------------
+## 2019.10.22
 - vs code 내에 Extensions > Live Server 모듈설치
 
-- HTML 기본문법
+##### HTML 기본문법
 ```html
   <!--글자굵게(b,strong)-->
   <p><b>굵게</b></p>
@@ -139,11 +142,3 @@ git commit -m "191021 | TIL 시작"
   </ul>
 
 ```
-
-- css 참고 사이트
-	- https://www.youtube.com/watch?v=ea69CKqsVMg
-
-
-
-
-

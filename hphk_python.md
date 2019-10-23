@@ -246,7 +246,67 @@ def cube(number):
 
 @app.route('/movies')
 def movies():
-    movie_list = ['82년생김지영','조커','궁예']
+    movie_list = ['82년생김지영','조커','터미네이터']
     return render_template('movies.html',movies=movie_list)
 ```
 
+## 2. 요청-응답(Request-Response)
+- Ping : 사용자가 일정한 주소로 요청을 보내면 , 사용자가 어떠한 값을 입력할 수 있는 Form이 담겨있는 페이지를 보여준다.
+- Pong : 사용자로부터 Form 입력 데이터를 받아
+### 2.1 Ping Pong
+- request import
+```python
+#request import
+from flask import Flask, render_template, request
+app = Flask(__name__)
+```
+- ping.html 추가
+```html
+<body>
+  <form action="/pong" method="GET">
+    이름: <input type="text" name="user_name" /><br>
+    <input type="submit">
+  </form>
+</body>
+```
+- app.py 로직 추가
+```python
+#ping : 사용자로부터 입력을 받을 Form페이지를 넘겨준다
+@app.route('/ping')
+def ping():
+    return render_template('ping.html')
+```
+- pong.html 추가
+```html 
+<body>
+  <h2>{{user_name}}님 안녕하세요~ 데이터가 저희 서버로 들어왔어요</h2>
+</body>
+```
+- app.py 로직 추가
+```python
+#pong : 사용자로부터 form데이터를 전달받아서 가공한다
+@app.route('/pong')
+def pong():
+    user_name = request.args.get('user_name')
+    return render_template('pong.html',user_name=user_name)
+    
+```
+### Fake Naver
+: 위 ping-pong구조에서 온전히 우리 웹 서비스 내에서 요청과 응답 프로세스를 구현했다. 하지만 사용자로부터 요청만 받은뒤 , 데이터를 처리해서 돌려주는 응답 프로세스를 다른 서버 측에 넘겨줄 수도 있다
+
+- naver.html 추가
+```html
+<body>
+    <form action="https://search.naver.com/search.naver">
+      <input type="text" name="query">
+      <input type="submit">
+    </form>
+</body>
+```
+- app.py 로직 추가
+```python
+#fake naver
+@app.route('/naver')
+def naver():
+    return render_template('naver.html')
+```

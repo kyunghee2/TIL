@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,6 +22,22 @@ def cube(number):
 def movies():
     movie_list = ['82년생김지영','조커','궁예']
     return render_template('movies.html',movies=movie_list)
+
+#ping : 사용자로부터 입력을 받을 Form페이지를 넘겨준다
+@app.route('/ping')
+def ping():
+    return render_template('ping.html')
+
+#pong : 사용자로부터 form데이터를 전달받아서 가공한다
+@app.route('/pong')
+def pong():
+    user_name = request.args.get('user_name')
+    return render_template('pong.html',user_name=user_name)
+
+#fake naver
+@app.route('/naver')
+def naver():
+    return render_template('naver.html')
 
 #debug 모드를 활성화해서 서버 새로고침을 생략
 if __name__ == '__main__':

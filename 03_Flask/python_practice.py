@@ -6,7 +6,7 @@
 str = input('문자를 입력하세요: ')
 
 # 아래에 코드를 작성해 주세요.
-print(f'첫번째 글자는 {str[0]}')cd 
+print(f'첫번째 글자는 {str[0]}')
 print(str[0])
 print(str[-1])
 

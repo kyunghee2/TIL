@@ -310,3 +310,53 @@ def pong():
 def naver():
     return render_template('naver.html')
 ```
+
+### vonvon 
+- vonvon.html 추가
+```html
+<body>
+  <form action="/godmademe">
+    <input type="text" name="user_name" >
+    <input type="submit">
+  </form>
+</body>
+```
+
+- godmademe.html 추가
+```html
+<body>
+  <h1>신이 나를 만들때</h1>
+  <h3>신이 {{ user_name }}님을 만들때</h3>
+  <ul>
+    <li>{{ first }}</li>
+    <li>{{ second }}</li>
+    <li>{{ third }}</li>
+  </ul>
+</body>
+```
+
+- app.py 로직추가
+```python
+@app.route('/vonvon')
+def vonvon():
+    return render_template('vonvon.html')
+
+#전달받은 이름을 기준으로 넘겨줄 각종 정보를 가공해서 돌려주는 (응답)로직
+@app.route('/godmademe')
+def godmademe():
+    #1. 사용자가 입력한 데이터를 가져온다
+    user_name = request.args.get('user_name')
+    #2. 사용자에게 보여줄 여러가지 재밌는 특정들 리스트를 만든다
+    first_list = ['미모들 듬뿍~','착함 세방울 넣고','앗 잘못넣음','엉뚬함 조금 넣고','성실함 두방울 넣고','잘생김 두방울 넣고..엌 쏟았네']
+    second_list = ['기럭지도 필요하려나','애교도 조금 넣으면 좋겠군']
+    third_list = ['하긴 너무 다 퍼줄 수 없지','기억력을 마지막으로.. 엌 바닥에 쏟았네','성실함을 마지막으로.. 엌 바닥에 쏟았네']
+    
+    #3. 리스트에서 랜덤으로 하나씩을 선택한다
+    first = random.choice(first_list)
+    second = random.choice(second_list)
+    third = random.choice(third_list)
+    #4. 가공한 정보를 템플릿에 담아서 사용자에게 보여준다
+    return render_template('godmademe.html',user_name=user_name,first=first,second=second,third=third)
+```
+
+

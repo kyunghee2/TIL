@@ -359,4 +359,58 @@ def godmademe():
     return render_template('godmademe.html',user_name=user_name,first=first,second=second,third=third)
 ```
 
+### 아스키 아트 API 활용
+- API 주소: http://artii.herokuapp.com/
+- 가상환경 내에서 requests 설치
+```cmd
+source ~/venv/Scripts/activate #가상환경 실행
+pip install requests
+```
+- request import
+```python
+import requests
+```
+- catch.html 추가
+```html
+...
+<body>
+  <form action="/result" method="GET">
+    <input type="text" name="word">
+    <input type="submit">
+  </form>
+</body>
+```
+- artii_result.html 추가
+```html
+...
+<body>
+<pre>
+{{ result }}
+</pre>
+</body>
+```
+- app.py 로직 추가
+```python
+#1. 사용자로부터 임의의 텍스트를 입력받아서, 아스키 아트로 변환해서 돌려준다.
+# 이때 아스키 아트 폰트는 랜덤으로 하나를 지정해서 변환한다.
+@app.route('/catch')
+def catch():
+    return render_template('catch.html')
 
+@app.route('/result')
+def result():
+    #1.사용자가 입력한 FROM 데이터를 가져온다
+    word = request.args.get('word')
+    #2. ARTII API로 요청을 보내서 응답 결과를 변수에 담는다 (폰트 정보들)
+    fonts = requests.get('http://artii.herokuapp.com/fonts_list').text
+    #3. 가져온 폰트들을 리스트 형태로 바꾼다
+    fonts = fonts.split('\n')
+    #print(fonts)
+    #4. 폰트 하나를 랜덤으로 선택한다
+    font = random.choice(fonts)
+    #5. 사용자가 입력한 단어와 랜덤으로 선택한 폰트 정보를 담아서 API에게 요청한다.
+    result = requests.get(f'http://artii.herokuapp.com/make?text={word}&font={font}').text
+    #6. 최종 결과물을 사용자에게 돌려준다
+    return render_template('artii_result.html',result=result)
+
+```

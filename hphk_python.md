@@ -414,3 +414,4 @@ def result():
     return render_template('artii_result.html',result=result)
 
 ```
+![flask_ex1.JPG](https://user-images.githubusercontent.com/33045725/67366030-b0733b80-f5ad-11e9-98d9-8a00d163711b.JPG)

@@ -8,4 +8,5 @@
 2. [웹 기본 개념](./hphk_intro_html.md "웹 기본 개념")
 3. [HTML 기본 문법](./hphk_intro_html.md "HTML 기본 문법")
 4. [CSS 기본](./hphk_css.md)
-5. [Flask](./hphk_python.md)
+5. [Flask](./hphk_flask.md)
+6. [Python](./hphk_python.md)

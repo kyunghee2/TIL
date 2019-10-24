@@ -92,7 +92,7 @@ for x in pricelist:
 ### 1.0 가상환경 실행
 ```cmd
 #기본 사용법
-$ python -m venv 가상환경이름
+#$ python -m venv 가상환경이름
 $ python -m venv venv
 
 #가상환경 실행및 종료

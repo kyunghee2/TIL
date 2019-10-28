@@ -16,14 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages import views
-
 urlpatterns = [
-    path('hello/<str:name>/',views.hello),
-    path('index/', views.index),
-    path('introduce/', views.introduce),
-    path('image/', views.image),
-    path('times/<int:number1>/<int:number2>',views.times),
-    path('area/<int:radius>/',views.area),
     path('admin/', admin.site.urls),
 ]

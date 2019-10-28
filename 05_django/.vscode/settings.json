@@ -13,5 +13,6 @@
     ​
     "[django-html]": {
         "editor.tabSize": 2
-    }
+    },
+   
 }

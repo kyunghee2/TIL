@@ -20,5 +20,6 @@ from pages import views
 
 urlpatterns = [
     path('index/', views.index),
+    path('introduce/', views.introduce),
     path('admin/', admin.site.urls),
 ]

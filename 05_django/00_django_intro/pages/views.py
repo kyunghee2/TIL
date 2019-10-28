@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from datetime import datetime
 import random
+
 # Create your views here.
 # view 함수 -> 중간관리자
 # 사용자가 접속해서 볼 페이지를 작성. 즉 하나하나의 페이지를 view라고 부른다
@@ -59,4 +61,60 @@ def area(request,radius):
         'result':result
     }
     return render(request,'area.html',context)
+
+def template_language(request):
+    menus = ['짜장면', '탕수육', '짬뽕', '양장피']
+    my_sentence = 'Life is short, you need python'
+    messages = ['apple', 'banana', 'cucumber', 'mango']
+    datetimenow = datetime.now()
+    empty_list = []
+    context = {
+        'menus': menus,
+        'my_sentence': my_sentence,
+        'messages': messages,
+        'empty_list': empty_list,
+        'datetimenow': datetimenow,
+    }
+    return render(request, 'template_language.html', context)
+
+#=============================================
+# [실습1] ISIT YOUR BIRTH? (날짜 라이브러리 활용)
+# 오늘 날짜와 본인 실제 생일 비교해서, 맞으면 예! 아니면 아니오!
+def isbirth(request):
+    today = datetime.now()
+    result = False
+    if today.month == 10 and today.day == 3:
+        result = True
     
+    context = {
+        'result': result
+    }
+    return render(request, 'isbirth.html', context)
+
+# [실습2] 회문 판별(팰린드롬 / 문자열 슬라이싱 파트 활용)
+# ex)오디오는 거꾸로 해도 오디로 -> 회문
+def ispal(request, word):  
+    #검색 키워드: 파이썬 문자열 슬라이스 
+    if word == word[::-1]:
+        result = True
+    else:
+        result = False
+
+    context ={
+        'word':word,
+        'result' : result
+    }
+    return render(request, 'ispal.html', context)
+
+# [실습3] 로또 번호 추첨 (리스트 + a 활용)
+# 임의의 출력한 로또 번호와 가장 최근에 추첨한 로또 번호 비교해서 당첨여부 확인
+def lotto(request):
+    #sorted 원본변경 x, 변수에 담아야함
+    lottos = sorted(list(random.sample(range(1,46), 6)))
+    real_lottos = [18 ,34,39,43,44,45] #882회차
+
+    context = {
+        'lottos':lottos,
+        'real_lottos':real_lottos
+    }
+    return render(request, 'lotto.html', context)

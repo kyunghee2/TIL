@@ -11,6 +11,12 @@ def throw(request):
 
 # 사용자로부터 정보를 받아서 다시 던져줄 페이지
 def catch(request):
+    print(request)
+    print("===")
+    #=><WSGIRequest: GET '/catch/?message=sdfds'>
+    print(request.GET)
+    #=><QueryDict: {'message': ['sdfds']}>
+
     message = request.GET.get('message')
     context = {
         'message':message
@@ -22,7 +28,7 @@ def catch(request):
 def art(request):
     return render(request,'art.html')
 
-def art_result(request):
+def art_result(request):    
     word = request.GET.get('word')
     
     fonts = requests.get('http://artii.herokuapp.com/fonts_list').text    
@@ -35,3 +41,14 @@ def art_result(request):
     }
     return render(request, 'art_result.html',context)
 
+def user_new(request):
+    return render(request, 'user_new.html')
+
+def user_create(request):
+    user_id = request.POST.get('user_id')
+    pwd = request.POST.get('pwd')
+    context = {
+        'user_id':user_id,
+        'pwd':pwd
+    }
+    return render(request, 'user_create.html',context)

@@ -8,8 +8,12 @@ class Article(models.Model):
     # 장고 내부에서 데이터 유효성 검증을 할 때 사용
     title = models.CharField(max_length=30)
     # 긴 문자열은 TextField 사용
-    context = models.TextField()
+    content = models.TextField()
     # auto_now_add=True : 인스턴스 최초 생성 시각
     created_at = models.DateTimeField(auto_now_add=True)
-    #auto_now=True : 인스턴스 최종 수정 시각 (업데이트됨)
-    # updated_at = models.DateTimeField(auto_now=True)
+    # auto_now=True : 인스턴스 최종 수정 시각 (업데이트됨)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    # 객체를 표시하는 형식 커스터마이징
+    def __str__(self):
+        return f'[{self.pk}번글]: {self.title}'

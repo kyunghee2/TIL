@@ -13,5 +13,5 @@
 7. [Telegram Chatbot 제작 및 배포](https://github.com/kyunghee2/telegram_bot)
 8. [파이썬기반 Django 웹개발 1](./5.hphk_django.md)
 9. [파이썬기반 Django 웹개발 2](./5.hphk_django2.md)
-10. [파이썬기반 Database-Sqlite3](/.6.hphk_django_db.md)
+10. [파이썬기반 Database-Sqlite3](./6.hphk_django_db.md)
 

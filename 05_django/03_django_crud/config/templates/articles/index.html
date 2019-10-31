@@ -5,11 +5,11 @@
 
 {% block body %}
 <h1 class='text-center'>Articles</h1>
-<a href="/articles/new/">[NEW]</a>
+<a href="{% url 'articles:new' %}">[NEW]</a>
 
 {% for article in articles %}
 <hr>
 <p> [{{ article.pk }}] {{ article.title }}</p>
-<a href="/articles/{{article.pk}}">[DETAIL]</a>
+<a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a>
 {% endfor %}
 {% endblock body %}

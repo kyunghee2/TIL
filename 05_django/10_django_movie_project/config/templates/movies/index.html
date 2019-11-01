@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1 class="text-center">영화목록</h1>
+<button type="button" class="btn btn-primary float-right" onclick="location.href='new/'">신규</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">title</th>
+      <th scope="col">audience</th>
+      <th scope="col">open_date</th>
+      <th scope="col">genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in movies %}
+    <tr>
+      <th>{{movie.id}}</th>
+      <td><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></td>
+      <td>{{movie.audience}}</td>
+      <td>{{movie.open_date}}</td>
+      <td>{{movie.genre}}</td>
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+{% endblock body %}

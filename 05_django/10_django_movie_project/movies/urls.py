@@ -12,5 +12,5 @@ urlpatterns = [
     path('<int:movie_pk>/edit/',views.edit,name="edit"),
     path('<int:movie_pk>/update/',views.update,name="update"),
     path('<int:movie_pk>/delete',views.delete,name="delete")
-    # path('csvfilesave/',views.datasave)
+    # path('csvfilesave/',views.csvfilesave)
 ]

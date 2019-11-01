@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">이미지</th>
       <th scope="col">영화제목</th>
       <th scope="col">관객수</th>
       <th scope="col">영화개봉일</th>
@@ -18,6 +19,7 @@
     {% for movie in movies %}
     <tr>
       <th>{{movie.id}}</th>
+      <td><img src="{{movie.poster_url}}" style="width:100px;"></td>
       <td><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></td>
       <td>{{movie.audience}}</td>
       <td>{{movie.open_date}}</td>

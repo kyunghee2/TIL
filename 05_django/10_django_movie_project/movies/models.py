@@ -5,7 +5,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=200)
     title_en = models.CharField(max_length=200)
     audience = models.IntegerField()
-    open_date = models.DateTimeField()
+    open_date = models.TextField()
     genre = models.CharField(max_length=200)
     watch_grade = models.CharField(max_length=200)
     score = models.FloatField()

@@ -21,6 +21,7 @@
 12. [Bootstrap](./10.hphk_bootstrap_seeddaata.md)
 13. [Seed Data 입력](./10.hphk_bootstrap_seeddaata.md)
 14. [RESTful API](./11.hphk_restful_api.md)
+15. [ORM 1:N Relation](./11.hphk_restful_api.md)
 
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

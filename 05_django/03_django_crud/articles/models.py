@@ -11,4 +11,22 @@ class Article(models.Model):
     def __str__(self):
         return f'[{self.pk}] {self.title}'
         
+class Comment(models.Model):
+    #related_name : 부모테이블에서 역으로 참조할때 기본적으로 모델이름_set 형식으로 불러온다. 
+    #related_name이라는 값을 설정해서 _set 명령어를 임의로 변경할 수 있따
+    #article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+
+    content = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    #Model Level에서 Metadata 설정
+    class Meta:
+        ordering = ['-pk',] #정렬설정
+    
+    def __str__(self):
+        return self.content
+
     

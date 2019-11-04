@@ -17,5 +17,10 @@
 	- [Django Model ORM](./6.hphk_django_db.md)
 	- [Django CRUD](./7.hphk_django_db_crud.md)
 	- [전생 직업 APP 만들기 실습](./8.hphk_django_exam_faker.md)
+11. [종합실습 프로젝트 #01](./9.hphk_django_movie_project.md)
+12. [Bootstrap](./10.hphk_bootstrap_seeddaata.md)
+13. [Seed Data 입력](./10.hphk_bootstrap_seeddaata.md)
+14. [RESTful API](./11.hphk_restful_api.md)
 
-
+----
+- [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

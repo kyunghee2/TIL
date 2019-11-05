@@ -14,4 +14,16 @@
 {% csrf_token %}
 <input type="submit" value="DELETE">
 </form>
+<!--댓글 작성 form-->
+<hr>
+<strong><p>댓글</p></strong>
+<form action="{% url 'articles:comments_create' article.pk %}" method="POST">
+{% csrf_token %}
+<textarea name="content"></textarea>
+<input type="submit" value="댓글작성">
+</form>
+{% for comment in comments %}
+<hr>
+<p> {{ comment.content }}</p>
+{% endfor %}
 {% endblock body %}

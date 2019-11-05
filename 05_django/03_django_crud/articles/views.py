@@ -16,8 +16,8 @@ def create(request):
         #POST 요청일 경우 -> 게시글 생성 로직 수행
         title = request.POST.get('title')
         content = request.POST.get('content')
-
-        article = Article(title=title, content=content)
+        image = request.FILES.get('image')
+        article = Article(title=title, content=content,image=image)
         article.save()
     
         return redirect('articles:index')

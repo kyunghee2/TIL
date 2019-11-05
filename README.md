@@ -22,6 +22,8 @@
 - [Seed Data 입력](./10.hphk_bootstrap_seeddaata.md)
 - [RESTful API](./11.hphk_restful_api.md)
 - [ORM 1:N Relation](./11.hphk_restful_api.md)
+- [Static files](./11.hphk_restful_api.md)
+- [Image Upload/ Load](./11.hphk_restful_api.md)
 
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

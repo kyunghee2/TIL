@@ -64,10 +64,17 @@ def comments_create(request, article_pk):
 
     if request.method == 'POST':    
         content = request.POST.get('content')    
-        comment = Comment(content=content)
-        comment.article = article
+        comment = Comment(article=article,content=content)
         comment.save()
         return redirect('articles:detail',article_pk)
     else:
         return redirect('articles:detail',article_pk)
-        
+
+#댓글 삭제 뷰 함수
+def comments_delete(request,article_pk,comment_pk):
+    if request.method == 'POST':
+        comment = Comment.objects.get(pk=comment_pk)
+        comment.delete()
+        return redirect('articles:detail',article_pk)
+    else:
+        return redirect('articles:detail',article_pk)

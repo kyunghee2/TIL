@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pr$*7(qpmq%^7p581qutchfe#h4&s+2^((9k*m8w^el1s3#q+j'
+SECRET_KEY = '*&@5fz@jvvswpzv78ymo2ty=wej5fj2c$a*!%4$ak+a(d#turi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,10 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'articles',
-    'students',
-    'jobs',
-    'django_extensions',
-    'imagekit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +55,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #templates 폴더경로 지정
+         #templates 폴더경로 지정
         'DIRS': [os.path.join(BASE_DIR,'config','templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,17 +119,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-#웹 사이트에서 사용할 정적 파일의 최상위 URL경로
 STATIC_URL = '/static/'
-
-#정적 파일이 위치한 경로
-#개발단계에서 사용 -> 실제 프로젝트 배포 단계에서는 다른 방식 사용
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'config', 'assets'),
-]
-
-#Media files
-#업로드된 파일의 주소를 만들어주는 역할
-MEDIA_URL = '/media/'
-#실제로 파일이 업로드된 다음에 어디로 배치될 것인지 경로를 정하는 설정
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')

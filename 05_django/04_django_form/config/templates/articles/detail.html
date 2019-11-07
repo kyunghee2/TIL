@@ -24,4 +24,12 @@
     {% buttons submit='댓글작성' %}{% endbuttons %}
   </div>
 </form>
+<hr>
+<p><b>댓글목록({{comments|length}}개)</b></p>
+{% for comment in comments %}
+<p>[{{forloop.revcounter}}번 댓글] {{comment.content}} <small>({{comment.created_at}})</small>
+<form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+{% csrf_token %}<button type="submit" >댓글삭제</button></form>
+</p>
+{% endfor %}
 {% endblock %}

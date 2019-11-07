@@ -11,6 +11,9 @@
   <p> [{{article.pk }}]번호</p>
   <p> 제목 : {{ article.title }}</p>
     <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a> 
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+    {% csrf_token %}<button type="submit">[DELETE]</button>
+    </form> 
   <hr>
   {% endfor %}
 {% endblock body %}

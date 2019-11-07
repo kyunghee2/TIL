@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from IPython import embed
 from .models import Article
 from .forms import ArticleForm
+from .forms import CommentForm
 
 # Create your views here.
 def index(request):
@@ -39,7 +40,11 @@ def create(request):
 def detail(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
     article = get_object_or_404(Article, pk=article_pk)
-    context = {'article':article,} 
+    comment_form = CommentForm()
+    context = {
+        'article':article,
+        'comment_form':comment_form,
+        } 
     return render(request, 'articles/detail.html', context)
 
 
@@ -79,3 +84,9 @@ def update(request, article_pk):
         'article':article
     }
     return render(request, 'articles/form.html', context)
+
+def comments_create(requset, article_pk):
+    article = get_object_or_404(Article, pk =article_pk)
+
+def comments_delete(requset, article_pk):
+    article = get_object_or_404(Article, pk =article_pk)

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 {% block body %}
   <br>
   <h1>DETAIL</h1>
@@ -16,4 +16,12 @@
 
 <hr>
 <br>
+<form action="{% url 'articles:comments_create' article.pk %}" method="POST">
+  <!-- POST 요청할 때 반드시 설정 -->
+  {% csrf_token %}
+  {% bootstrap_form comment_form layout='inline' %}
+  <div class="text-center">
+    {% buttons submit='댓글작성' %}{% endbuttons %}
+  </div>
+</form>
 {% endblock %}

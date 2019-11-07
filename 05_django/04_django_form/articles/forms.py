@@ -1,5 +1,6 @@
 from django import forms
 from .models import Article
+from .models import Comment
 # class ArticleForm(forms.Form):
 #     title = forms.CharField(
 #         max_length=30,
@@ -57,3 +58,19 @@ class ArticleForm(forms.ModelForm):
         fields = '__all__' #전체가져오기
         #fields = ('title','content',) #선택해서 데이터 가져오기
 
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(
+        label='댓글',
+        max_length=1000,
+        widget=forms.Textarea(
+            attrs={
+                'class':'content',
+                'placeholder':'댓글입력',
+                'rows':5,
+                'cols':30
+            }
+        )
+    )
+    class Meta:
+        model = Comment
+        fields = ('content',)

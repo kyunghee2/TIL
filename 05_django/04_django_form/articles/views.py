@@ -74,5 +74,8 @@ def update(request, article_pk):
     # context로 전달되는 2가지 form 형식
     # 1. GET -> 초기값을 폼에 넣어서 사용자에게 던져줌
     # 2. POST -> is_valid가 False가 리턴됬을 때, 오류 메세지를 포함해서 동작한다.
-    context = {'form':form}
+    context = {
+        'form':form,
+        'article':article
+    }
     return render(request, 'articles/form.html', context)

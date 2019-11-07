@@ -17,13 +17,14 @@
 	- [Django Model ORM](./6.hphk_django_db.md)
 	- [Django CRUD](./7.hphk_django_db_crud.md)
 	- [전생 직업 APP 만들기 실습](./8.hphk_django_exam_faker.md)
-- [종합실습 프로젝트 #01](./9.hphk_django_movie_project.md)
+	- [종합실습 프로젝트 #01](./9.hphk_django_movie_project.md)
 - [Bootstrap](./10.hphk_bootstrap_seeddaata.md)
 - [Seed Data 입력](./10.hphk_bootstrap_seeddaata.md)
 - [RESTful API](./11.hphk_restful_api.md)
 - [ORM 1:N Relation](./11.hphk_restful_api.md)
 - [Static files](./11.hphk_restful_api.md)
 - [Image Upload/ Load](./11.hphk_restful_api.md)
+- [Django Form](./12.hphk_django_form.md)
 
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

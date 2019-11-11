@@ -1,3 +1,4 @@
+import hashlib
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
 from IPython import embed
@@ -6,16 +7,20 @@ from .models import Comment
 from .forms import ArticleForm
 from .forms import CommentForm
 
-
 # Create your views here.
 def index(request):
+    #embed()
+    # if request.user.is_authenticated:
+    #     gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
+    # else:
+    #     gravatar_url = None
+
     articles = Article.objects.all()
     context = {'articles':articles,}
     return render(request,'articles/index.html', context)
 
 
-def create(request):
-    
+def create(request):    
     if request.method == 'POST':
         # Binding 과정
         # 폼 인스턴스를 생성하고, 전달받은 데이터를 채운다.

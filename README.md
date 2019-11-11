@@ -25,6 +25,18 @@
 - [Static files](./11.hphk_restful_api.md)
 - [Image Upload/ Load](./11.hphk_restful_api.md)
 - [Django Form](./12.hphk_django_form.md)
+  	- Image Resizing
+  	- Django Form
+  	- URL Resolver
+  	- Django bootstrap
+   - Authentication (인증)
+     - SignUp 기능
+     - Login 기능
+     - Logout 기능
+     - 사용자 정보 커스텀마이징
+     - 비밀번호 변경
+     - Auth Form 합치기
+     - Gravater 이미지
 
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

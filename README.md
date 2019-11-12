@@ -11,9 +11,9 @@
 - [Flask](./4.hphk_flask.md)
 - [Python](./3.hphk_python.md)
 - [Telegram Chatbot 제작 및 배포](https://github.com/kyunghee2/telegram_bot)
-- [파이썬기반 Django 웹개발 1](./5.hphk_django.md)
-- [파이썬기반 Django 웹개발 2](./5.hphk_django2.md)
-- 파이썬기반 Django Database 연동 (Sqlite3)
+- [Django 웹개발 1](./5.hphk_django.md)
+- [Django 웹개발 2](./5.hphk_django2.md)
+- Django Database 연동 (Sqlite3)
 	- [Django Model ORM](./6.hphk_django_db.md)
 	- [Django CRUD](./7.hphk_django_db_crud.md)
 	- [전생 직업 APP 만들기 실습](./8.hphk_django_exam_faker.md)
@@ -24,10 +24,11 @@
 - [ORM 1:N Relation](./11.hphk_restful_api.md)
 - [Static files](./11.hphk_restful_api.md)
 - [Image Upload/ Load](./11.hphk_restful_api.md)
-- [Django Form](./12.hphk_django_form.md)
+- [Django 웹개발 심화](./12.hphk_django_form.md)
+  	- Django Form 적용
   	- Image Resizing
-  	  	- URL Resolver 적용
-  	  	- Django bootstrap 적용
+  	   - URL Resolver 적용
+  	   - Django bootstrap 적용
   	   - Authentication (인증)
   	     - SignUp 기능
   	     - Login 기능
@@ -37,7 +38,6 @@
   	     - Auth Form 합치기
   	     - Gravater 이미지
   	     - User - Article & Comment 관계설정, 및 조건 체크
-  	
 - [Model Relationships](./13.hphk_django_model_relationship.md)
   	- Many to One
   	- Many to Many

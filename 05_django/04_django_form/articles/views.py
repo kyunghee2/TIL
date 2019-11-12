@@ -28,11 +28,9 @@ def create(request):
         form = ArticleForm(request.POST)
         # embed()
         if form.is_valid():
-            # cleaned_data를 통해 딕셔너리 안 데이터를 검증한다.
-            # title = form.cleaned_data.get('title')
-            # content = form.cleaned_data.get('content')
-            # article = Article.objects.create(title=title, content=content)
-            article = form.save()
+            article = form.save(commit=False)
+            article.user = request.user
+            article.save()
 
         return redirect('articles:detail', article.pk)
     else:

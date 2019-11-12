@@ -12,8 +12,12 @@
 <p>수정 시각 : {{ article.updated_at }}</p>
 <hr>
 <a href="{% url 'articles:index' %}">[BACK]</a>
+{% if request.user == article.user %}
 <a href="{% url 'articles:update' article.pk %}">[UPDATE]<a>
-
+<form action="{% url 'articles:delete' article.pk %}" method="POST">
+{% csrf_token %}<button type="submit" >[DELETE]</button>
+</form>
+{% endif %}
 <hr>
 <br>
 <form action="{% url 'articles:comments_create' article.pk %}" method="POST">

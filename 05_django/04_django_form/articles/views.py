@@ -57,31 +57,29 @@ def detail(request, article_pk):
     return render(request, 'articles/detail.html', context)
 
 @require_POST
-def delete(request, article_pk):
-    article = get_object_or_404(Article,pk=article_pk)    
-    #if request.method == 'POST':    
-    article.delete()
+def delete(request, article_pk):    
+    if request.user.is_authenticated:#사용자가 로그인 되어 있는지
+        article = get_object_or_404(Article,pk=article_pk) #삭제할 게시글
+        if request.user == article.user: #로그인한 사용자와 게시글 작성자가 같은지
+            article.delete()
+        else:
+            return redirect('articles:detail',article.pk)
+
     return redirect('articles:index')
     
 
-
 def update(request, article_pk):
     article = get_object_or_404(Article,pk=article_pk)
-    
-    if request.method == "POST":
-        form = ArticleForm(request.POST, instance=article)
-        if form.is_valid():
-            article = form.save()
-            # article.title = form.cleaned_data.get('title')
-            # article.content = form.cleaned_data.get('content')
-            # article.save()
-            return redirect('articles:detail', article.pk)
+    if request.user == article.user: #작성자가 같은경우만
+        if request.method == "POST":
+            form = ArticleForm(request.POST, instance=article)
+            if form.is_valid():
+                article = form.save()               
+                return redirect('articles:detail', article.pk)
+        else:
+            form = ArticleForm(instance=article)       
     else:
-        form = ArticleForm(instance=article)       
-        # form = ArticleForm(initial={
-        #     'title':article.title,
-        #     'content':article.content,
-        # })
+        return redirect('articles/index')   
 
     # context로 전달되는 2가지 form 형식
     # 1. GET -> 초기값을 폼에 넣어서 사용자에게 던져줌

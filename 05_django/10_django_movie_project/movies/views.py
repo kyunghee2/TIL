@@ -1,3 +1,5 @@
+import hashlib
+from django.views.decorators.http import require_POST
 from django.shortcuts import render,redirect
 from .models import Movie
 from .models import Comment
@@ -96,21 +98,22 @@ def csvfilesave(request):
     return render(request,'movies/save_result.html')
 
 #댓글 생성
+@require_POST
 def comments_create(request,movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
-    if request.method == 'POST':
-        content = request.POST.get('content')
-        comment = Comment(movie=movie,content=content)
-        comment.save()
-        return redirect('movies:detail',movie_pk)
-    else:
-        return redirect('movies:detail',movie_pk)
+    #if request.method == 'POST':
+    content = request.POST.get('content')
+    comment = Comment(movie=movie,content=content)
+    comment.user = request.user
+    comment.save()
+    return redirect('movies:detail',movie_pk)
+    
 
 #댓글 삭제
+@require_POST
 def comments_delete(request,movie_pk,comment_pk):
-    if request.method =='POST':
-        movie = Comment.objects.get(pk=comment_pk)
-        movie.delete()
-        return redirect('movies:detail',movie_pk)
-    else:
-        return redirect('movies:detail',movie_pk)
+    #if request.method =='POST':
+    movie = Comment.objects.get(pk=comment_pk)
+    movie.delete()
+    return redirect('movies:detail',movie_pk)
+  

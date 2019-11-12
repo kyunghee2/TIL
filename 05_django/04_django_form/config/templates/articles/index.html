@@ -12,9 +12,11 @@
   <p> [{{article.pk }}]번호</p>
   <p> 제목 : {{ article.title }}</p>
     <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a> 
+    {% if user.is_authenticated %}
     <form action="{% url 'articles:delete' article.pk %}" method="POST">
     {% csrf_token %}<button type="submit">[DELETE]</button>
     </form> 
+    {% endif %}
   <hr>
   {% endfor %}
 {% endblock body %}

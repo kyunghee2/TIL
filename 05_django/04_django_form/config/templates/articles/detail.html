@@ -20,6 +20,7 @@
 {% endif %}
 <hr>
 <br>
+{% if user.is_authenticated %}
 <form action="{% url 'articles:comments_create' article.pk %}" method="POST">
   <!-- POST 요청할 때 반드시 설정 -->
   {% csrf_token %}
@@ -28,12 +29,17 @@
     {% buttons submit='댓글작성' %}{% endbuttons %}
   </div>
 </form>
+{% else%}
+<a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인 해주세요]</a>
+{% endif %}
 <hr>
 <p><b>댓글목록({{comments|length}}개)</b></p>
 {% for comment in comments %}
 <p>[{{forloop.revcounter}}번 댓글] {{comment.content}} <small>({{comment.created_at}})</small>
+{% if user.is_authenticated %}
 <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
 {% csrf_token %}<button type="submit" >댓글삭제</button></form>
+{% endif %}
 </p>
 {% endfor %}
 {% endblock %}

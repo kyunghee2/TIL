@@ -92,21 +92,22 @@ def update(request, article_pk):
 
 @require_POST
 def comments_create(requset, article_pk):
-    article = get_object_or_404(Article, pk =article_pk)
-    #if requset.method == 'POST':
+    #article = get_object_or_404(Article, pk =article_pk)    
     comment_form = CommentForm(requset.POST)
     if comment_form.is_valid():
-        #save 메서드 -> 선택 인자:(기본값) commit=True
-        #DB에 바로 저장되는 것을 막아준다
         comment  = comment_form.save(commit=False)
-        comment.article = article
+        comment.user = requset.user
+        #comment.article = article    #방법1    
+        comment.article_id = article_pk #방법2
         comment.save()
 
-        return redirect('articles:detail',article.pk)
+        return redirect('articles:detail',article_pk)
 
 @require_POST
 def comments_delete(requset, article_pk,comment_pk):
-    comment = get_object_or_404(Comment,pk=comment_pk)
-    comment.delete()
+    if requset.user.is_authenticated: #로그인여부확인
+        comment = get_object_or_404(Comment,pk=comment_pk)
+        if requset.user == comment.user: #로그인한 사용자와 댓글 작성자가 같을 경우
+            comment.delete()
     return redirect('articles:detail',article_pk)
 

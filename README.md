@@ -25,7 +25,7 @@
 - [Static files](./11.hphk_restful_api.md)
 - [Image Upload/ Load](./11.hphk_restful_api.md)
 - [Django 웹개발 심화](./12.hphk_django_form.md)
-    - Django Form 적용
+    - Django ModelForm 적용
     - Image Resizing
     - URL Resolver 적용
     - Django bootstrap 적용
@@ -39,8 +39,8 @@
         - Gravater 이미지
         - User - Article & Comment 관계설정, 및 조건 체크
 - [Model Relationships](./13.hphk_django_model_relationship.md)
-  	- Many to One
-  	- Many to Many
-
+    - Many to One
+    - Many to Many
+    
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

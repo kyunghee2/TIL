@@ -25,19 +25,19 @@
 - [Static files](./11.hphk_restful_api.md)
 - [Image Upload/ Load](./11.hphk_restful_api.md)
 - [Django 웹개발 심화](./12.hphk_django_form.md)
-  	- Django Form 적용
-  	- Image Resizing
-  	   - URL Resolver 적용
-  	   - Django bootstrap 적용
-  	   - Authentication (인증)
-  	     - SignUp 기능
-  	     - Login 기능
-  	     - Logout 기능
-  	     - 사용자 정보 커스텀마이징
-  	     - 비밀번호 변경
-  	     - Auth Form 합치기
-  	     - Gravater 이미지
-  	     - User - Article & Comment 관계설정, 및 조건 체크
+    - Django Form 적용
+    - Image Resizing
+    - URL Resolver 적용
+    - Django bootstrap 적용
+    - Authentication (인증)
+        - SignUp 기능
+        - Login 기능
+        - Logout 기능
+        - 사용자 정보 커스텀마이징
+        - 비밀번호 변경
+        - Auth Form 합치기
+        - Gravater 이미지
+        - User - Article & Comment 관계설정, 및 조건 체크
 - [Model Relationships](./13.hphk_django_model_relationship.md)
   	- Many to One
   	- Many to Many

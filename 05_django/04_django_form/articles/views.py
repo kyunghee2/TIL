@@ -48,11 +48,14 @@ def create(request):
 def detail(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
     article = get_object_or_404(Article, pk=article_pk)
+
+    person = get_object_or_404(get_user_model(),pk=article.user_id)
     comment_form = CommentForm()
     comments = article.comment_set.all()
 
     context = {
         'article':article,
+        'person':person,
         'comment_form':comment_form,
         'comments':comments
         } 
@@ -121,7 +124,8 @@ def like(request, article_pk):
     user = request.user
 
     #현재 게시글을 좋아요 누른 사람 목록에 현재 접속한 유저가 있을 경우 -> 좋아요 취소
-    if article.like_users.filter(pk=user.pk).exists():
+    #if article.like_users.filter(pk=user.pk).exists():
+    if user in article.like_users.all():
         article.like_users.remove(user)
     else:#목록에 없을 경우 좋아요 저장
         article.like_users.add(user)
@@ -135,12 +139,10 @@ def follow(request, article_pk, user_pk):
     #지금 접속하고 있는 유저
     user = request.user
 
-    #게시글 작성 유저 팔로워 목록에 접속 중인 유저가 있을 경우
-    # -> unfollow
-    if user in person.followers.all:
-        person.followers.remove(user)
-    #명단에 없으면 -> follow
-    else:
-        person.followers.add(user)
+    if person != user:
+        if user in person.followers.all:# -> unfollow
+            person.followers.remove(user)    
+        else: # -> follow
+            person.followers.add(user)
 
     return redirect('articles:detail',article_pk)

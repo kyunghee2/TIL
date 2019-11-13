@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block body %}
+{% include 'articles/_follow.html' %}
   <br>
   <h1>DETAIL</h1>
   <hr>
-
 <p>글 번호 : {{ article.pk }}</p>
 <p>글 제목 : {{ article.title }}</p>
 <p>글 내용 : {{ article.content }}</p>

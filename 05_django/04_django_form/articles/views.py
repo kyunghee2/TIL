@@ -8,6 +8,7 @@ from .models import Comment
 from .forms import ArticleForm
 from .forms import CommentForm
 from django.contrib.auth import get_user_model
+from itertools import chain
 
 # Create your views here.
 def index(request):
@@ -148,3 +149,27 @@ def follow(request, article_pk, user_pk):
             person.followers.add(user)
 
     return redirect('articles:detail',article_pk)
+
+#내가 팔로우 하는 사람의 글 + 내가 작성한 글
+def list(request):
+    #내가 팔로우하고 있는 사람들
+    followings = request.user.followings.all()
+    #내가 팔로우하고 있는 사람들 + 나 -> 합치기
+    followings = chain(followings, [request.user])
+    #위 명단 사람들 게시글 가져오기 
+    articles = Article.objects.filter(user__in=followings).order_by('-pk').all()
+    comment_form = CommentForm()
+    context = {
+        'articles':articles,
+        'comment_form':comment_form,
+    }
+    return render(request, 'articles/article_list.html' , context)
+
+def explore(request):
+    articles = Article.objects.all()
+    comment_form = CommentForm()
+    context = {
+        'articles':articles,
+        'comment_form':comment_form,
+    }
+    return render(request, 'articles/article_list.html' , context)

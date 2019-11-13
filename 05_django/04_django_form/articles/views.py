@@ -140,9 +140,11 @@ def follow(request, article_pk, user_pk):
     user = request.user
 
     if person != user:
-        if user in person.followers.all:# -> unfollow
+        if user in person.followers.all():
+            # -> unfollow
             person.followers.remove(user)    
-        else: # -> follow
+        else: 
+            # -> follow
             person.followers.add(user)
 
     return redirect('articles:detail',article_pk)

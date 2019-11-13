@@ -1,5 +1,5 @@
 {% load bootstrap4 %}
-{% load gravatar %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +12,9 @@
 <script src="https://kit.fontawesome.com/a84f15c24e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
+  {% include '_nav.html' %}
   <div class="container">
-    {% if user.is_authenticated %}
-      <h2><a href="{% url 'articles:index' %}"><img class="rounded-circle" src="https://s.gravatar.com/avatar/{{ user.email|makemd5 }}?s=80" alt=""></a>어서오세요, {{user.username}}</h2>
-      <a class="btn btn-outline-primary btn-sm" href="{% url 'accounts:logout' %}">로그아웃</a>
-      <a class="btn btn-outline-primary btn-sm" href={% url 'accounts:update'%}>정보수정</a>
-      <a class="btn btn-outline-primary btn-sm" href={% url 'accounts:change_password'%}>암호변경</a>
-    {% else %}
-      <a class="btn btn-outline-primary btn-sm" href="{% url 'accounts:login' %}">로그인</a>
-      <a class="btn btn-outline-primary btn-sm" href="{% url 'accounts:signup' %}">회원가입</a>
-    {% endif %}
-    
+   
     {% block body %}
     {% endblock body %}
   </div>

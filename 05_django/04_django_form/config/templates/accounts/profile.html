@@ -20,10 +20,11 @@
   </div>
 {% endfor %}
 </div>
+<br>
 <h3>{{person.username}}님이 작성한 댓글</h3>
 <div class="row">
 {% for comment in person.comment_set.all %}
-<div class="col-12 col-md-6">
+<div class="col-12 col-md-6 mb-3">
   <div class="card">
     <div class="card-body">
       {{comment.content}}<b>

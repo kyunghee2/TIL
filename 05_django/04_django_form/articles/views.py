@@ -7,6 +7,7 @@ from .models import Article
 from .models import Comment
 from .forms import ArticleForm
 from .forms import CommentForm
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 def index(request):
@@ -126,3 +127,20 @@ def like(request, article_pk):
         article.like_users.add(user)
     
     return redirect('articles:index')
+
+@login_required
+def follow(request, article_pk, user_pk):
+    #게시글 작성한 유저
+    person = get_object_or_404(get_user_model(), pk=user_pk)
+    #지금 접속하고 있는 유저
+    user = request.user
+
+    #게시글 작성 유저 팔로워 목록에 접속 중인 유저가 있을 경우
+    # -> unfollow
+    if user in person.followers.all:
+        person.followers.remove(user)
+    #명단에 없으면 -> follow
+    else:
+        person.followers.add(user)
+
+    return redirect('articles:detail',article_pk)

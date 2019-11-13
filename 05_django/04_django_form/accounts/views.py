@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from .forms import CustomUserChangeForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 #from django.
@@ -77,6 +78,12 @@ def change_password(request):
     context = {'form':form}
     #return render(request,'accounts/change_password.html',context)
     return render(request,'accounts/auth_form.html',context)
+
+# 회원탈퇴 - 로그인한 사람만 보임
+@require_POST
+def delete(request):
+    request.user.delete()
+    return redirect('articles:index')
 
 #프로필
 def profile(request, username):

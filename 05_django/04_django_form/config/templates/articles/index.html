@@ -7,16 +7,10 @@
 
   <a href="{% url 'articles:create' %}">[NEW]</a>
   <hr>
-  {% for article in articles %}
-  <p>작성자 : {{ article.user }}</p>
-  <p> [{{article.pk }}]번호</p>
-  <p> 제목 : {{ article.title }}</p>
-    <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a> 
-    {% if user.is_authenticated %}
-    <form action="{% url 'articles:delete' article.pk %}" method="POST">
-    {% csrf_token %}<button type="submit">[DELETE]</button>
-    </form> 
-    {% endif %}
-  <hr>
-  {% endfor %}
+  <div class="row">
+    {% for article in articles %}
+    <!-- 모듈화 시켜둔 article 템플릿 가져오기 -->
+    {% include 'articles/_article.html' %}
+    {% endfor %}
+  </div>
 {% endblock body %}

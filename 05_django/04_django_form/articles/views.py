@@ -1,4 +1,5 @@
 import hashlib
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
 from IPython import embed
@@ -111,3 +112,17 @@ def comments_delete(requset, article_pk,comment_pk):
             comment.delete()
     return redirect('articles:detail',article_pk)
 
+@login_required
+def like(request, article_pk):
+    #게시글 가져오기
+    article = get_object_or_404(Article, pk=article_pk)
+    #현재 접속하고 있는 유저
+    user = request.user
+
+    #현재 게시글을 좋아요 누른 사람 목록에 현재 접속한 유저가 있을 경우 -> 좋아요 취소
+    if article.like_users.filter(pk=user.pk).exists():
+        article.like_users.remove(user)
+    else:#목록에 없을 경우 좋아요 저장
+        article.like_users.add(user)
+    
+    return redirect('articles:index')

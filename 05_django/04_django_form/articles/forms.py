@@ -55,8 +55,8 @@ class ArticleForm(forms.ModelForm):
     )
     class Meta:
         model = Article
-        fields = '__all__' #전체가져오기
-        #fields = ('title','content',) #선택해서 데이터 가져오기
+        #fields = '__all__' #전체가져오기
+        fields = ('title','content',) #선택해서 데이터 가져오기
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(

@@ -15,13 +15,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'accounts:change_password'%}">암호변경</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:delete' %}">회원탈퇴</a>
-        </li>
-        <li class="nav-item active">
+        </li>        
+        <li class="nav-item ">
           <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
         </li>
+        <form action="{% url 'accounts:delete' %}" method="POST" style="display: inline;">
+          {% csrf_token %}
+          <input type="submit" value="회원탈퇴" class="btn btn-danger">
+        </form>
       {% else %}
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>

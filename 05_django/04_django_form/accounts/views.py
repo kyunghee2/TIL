@@ -6,6 +6,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from .forms import CustomUserChangeForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 #from django.
 # Create your views here.
 #Authentication(인증) -> 신원 확인
@@ -75,4 +77,9 @@ def change_password(request):
     context = {'form':form}
     #return render(request,'accounts/change_password.html',context)
     return render(request,'accounts/auth_form.html',context)
-    
+
+#프로필
+def profile(request, username):
+    person = get_object_or_404(get_user_model(),username=username)
+    context = {'person': person}
+    return render(request, 'accounts/profile.html',context)

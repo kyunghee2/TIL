@@ -10,6 +10,6 @@ def hashtag_link(article):
   for hashtag in hashtags:
     content = content.replace(
       hashtag.content + ' ',
-      f'<a href="{hashtag.pk}/hashtag/">{hashtag.content}</a> '
+      f'<a href="/articles/{hashtag.pk}/hashtag/">{hashtag.content}</a> '
     )
   return content

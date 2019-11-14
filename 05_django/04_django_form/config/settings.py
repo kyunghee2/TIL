@@ -27,13 +27,24 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = (   
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
+)
 # Application definition
 
 INSTALLED_APPS = [
     'articles',
     'accounts',
+
     'bootstrap4',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
+
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,3 +139,6 @@ STATIC_URL = '/static/'
 
 #기본값: auth.User
 AUTH_USER_MODEL = 'accounts.User'
+
+#로그인 후 리다이렉트 경로
+LOGIN_REDIRECT_URL ='articles:index'

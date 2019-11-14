@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load make_link %}
 {% load bootstrap4 %}
 {% block body %}
 {% include 'articles/_follow.html' %}
@@ -7,7 +8,8 @@
   <hr>
 <p>글 번호 : {{ article.pk }}</p>
 <p>글 제목 : {{ article.title }}</p>
-<p>글 내용 : {{ article.content }}</p>
+{% comment %} <p>글 내용 : {{ article.content }}</p> {% endcomment %}
+<p>글 내용:{{article|hashtag_link|safe }}</p>
 <p>생성 시각 : {{ article.created_at }}</p>
 <p>수정 시각 : {{ article.updated_at }}</p>
 <hr>

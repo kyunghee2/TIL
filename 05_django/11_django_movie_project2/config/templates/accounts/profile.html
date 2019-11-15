@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<h4>{{person.username}}님이 작성한 댓글</h4>
+<div class="row">
+{% for rating in person.rating_set.all %}
+<div class="col-6 ">
+  <div class="card">
+    <div class="card-body">
+      {{rating.content}}
+      <small>{{rating.created_at|date:"SHORT_DATETIME_FORMAT"}}</small>
+      <a href="{% url 'movies:detail' rating.movie.pk %}" class="btn-primary">게시글 확인</a>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+{% endblock body %}

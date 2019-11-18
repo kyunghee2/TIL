@@ -42,7 +42,7 @@
     - Many to One
     - Many to Many
 - [Like / Profile / Follow](./13.hphk_django_model_relationship.md)
-- [JavaScript](./15.hphk_javascript.md)
+- [JavaScript Syntax basics](./15.hphk_javascript.md)
 
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

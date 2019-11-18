@@ -9,6 +9,7 @@ class Movie(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    #ratings = models.ManyToManyField(Rating, related_name='like_articles', blank=True)
 
     #객체 표시 형식 수정
     def __str__(self):

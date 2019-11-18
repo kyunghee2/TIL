@@ -1,17 +1,21 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Movie
 from .models import Rating
-from django.views.decorators.http import require_POST
 from .forms import RatingForm
+from IPython import embed
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 def index(request):
+    #embed()
     movies = Movie.objects.all()[::-1]
     context ={
         'movies':movies
     }
     return render(request,'movies/index.html',context)
 
+@login_required
 def new(request):
     if request.method =='POST':        
         title = request.POST.get('title')
@@ -24,7 +28,7 @@ def new(request):
     else:
         return render(request,'movies/create.html')
 
-
+@login_required
 def edit(request,movie_pk):
     if request.method == 'POST':
         movie = Movie.objects.get(pk=movie_pk)

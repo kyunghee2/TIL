@@ -12,6 +12,6 @@ urlpatterns = [
     path('<int:movie_pk>/', views.detail,name="detail"),
     path('<int:movie_pk>/edit/',views.edit,name="edit"),
     path('<int:movie_pk>/delete/',views.delete,name="delete"),
-    path('<int:movie_pk>/ratings/',views.rating_create,name='rating_create'),
+    path('<int:movie_pk>/ratings/new/',views.rating_create,name='rating_create'),
     path('<int:movie_pk>/ratings/<int:rating_pk>/delete',views.ratings_delete,name='ratings_delete'),
 ]

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load make_link %}
+{% load bootstrap4 %}
+{% block body %}
+{% include 'articles/_follow.html' %}
+  <br>
+  <h1>DETAIL</h1>
+  <hr>
+<p>글 번호 : {{ article.pk }}</p>
+<p>글 제목 : {{ article.title }}</p>
+{% comment %} <p>글 내용 : {{ article.content }}</p> {% endcomment %}
+<p>글 내용:{{article|hashtag_link|safe }}</p>
+<p>생성 시각 : {{ article.created_at }}</p>
+<p>수정 시각 : {{ article.updated_at }}</p>
+<hr>
+<a href="{% url 'articles:index' %}">[BACK]</a>
+{% if request.user == article.user %}
+<a href="{% url 'articles:update' article.pk %}">[UPDATE]<a>
+<form action="{% url 'articles:delete' article.pk %}" method="POST">
+{% csrf_token %}<button type="submit" >[DELETE]</button>
+</form>
+{% endif %}
+<hr>
+<br>
+{% if user.is_authenticated %}
+<form action="{% url 'articles:comments_create' article.pk %}" method="POST">
+  <!-- POST 요청할 때 반드시 설정 -->
+  {% csrf_token %}
+  {% bootstrap_form comment_form layout='inline' %}
+  <div class="text-center">
+    {% buttons submit='댓글작성' %}{% endbuttons %}
+  </div>
+</form>
+{% else%}
+<a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인 해주세요]</a>
+{% endif %}
+<hr>
+<p><b>댓글목록({{comments|length}}개)</b></p>
+{% for comment in comments %}
+<p>[{{forloop.revcounter}}번 댓글] {{comment.content}} <small>({{comment.created_at}})</small>
+{% if comment.user == request.user %}
+<form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+{% csrf_token %}<button type="submit" >댓글삭제</button></form>
+{% endif %}
+</p>
+{% endfor %}
+{% endblock %}

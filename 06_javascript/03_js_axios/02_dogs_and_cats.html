@@ -1,0 +1,51 @@
+<html>
+  <head>    
+  </head>
+  <body>
+    <h1>댕댕이와 양이들~:)</h1>
+    <button id="dog">멍멍이내놔~</button>
+    <button id="cat">고양이내놔~</button>
+    <div class="animals">
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const getCatImage =() =>{
+        axios.get('https://api.thecatapi.com/v1/images/search')
+          .then(response =>{
+            const catdata = response.data[0]
+
+            const imgTag = document.createElement('img') 
+            imgTag.src = catdata.url
+            imgTag.style.width ='200px'
+            imgTag.style.height='200px'
+
+            const animals = document.querySelector('.animals')            
+            animals.prepend(imgTag)
+          })
+      }
+      const getDogImage = () => {
+        axios.get('https://dog.ceo/api/breeds/image/random')
+        .then(response =>{
+          const imgUrl = response.data.message
+
+          const imgTag = document.createElement('img') //이미지 태그생성
+          imgTag.src = imgUrl
+          imgTag.style.width ='200px'
+          imgTag.style.height='200px'
+
+          const animals = document.querySelector('.animals')
+          //animals.append(imgTag)
+          animals.prepend(imgTag)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
+      
+      const dogButton = document.querySelector('#dog')
+      dogButton.addEventListener('click',getDogImage)
+      const catButton = document.querySelector('#cat')
+      catButton.addEventListener('click',getCatImage)
+    </script>
+  </body>
+</html>

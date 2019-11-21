@@ -35,7 +35,7 @@
     {% endif %}
     <!--페이지버튼-->
     {% for num in articles.paginator.page_range %}
-    <li class="page-item"><a class="page-link" href="{% url 'articles:index' %}?page={{ num }}">{{ num }}</a></li>
+    <li class="page-item" {% if num == articles.number %}active{% endif %}><a class="page-link" href="{% url 'articles:index' %}?page={{ num }}">{{ num }}</a></li>
     {% endfor%}
 
     {% if articles.has_next %}

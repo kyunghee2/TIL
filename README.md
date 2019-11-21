@@ -71,7 +71,7 @@
 - JavaScript
   - [JavaScript Syntax basics](./15.hphk_javascript.md)
     - [공룡만들기실습](./16.hphk_javascript_callback.md)
-  - [Axios](./17.hphk_javascript_axios.md)
+  - [Axios를 이용한 비동기 처리](./17.hphk_javascript_axios.md)
 
 ----
 - [VS Code 툴 에러표시 문제 해결](./9.hphk_django_movie_project.md)

@@ -10,16 +10,24 @@ from .forms import CommentForm
 from django.contrib.auth import get_user_model
 from itertools import chain
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
     #embed()
-    # if request.user.is_authenticated:
-    #     gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
-    # else:
-    #     gravatar_url = None
-
+    
     articles = Article.objects.all()
+    # article를 Paginator에 넣기
+    # - Paginator(전체 리스트, 보여줄 갯수)
+    paginator = Paginator(articles, 4)
+    # 사용자가 요청한 page가져오기
+    page = request.GET.get('page')
+    # 해당하는 page의 article만 가져오기
+    articles = paginator.get_page(page)
+    # print(dir(articles))
+    # print('=======================')
+    # print(dir(articles.paginator))
+
     context = {'articles':articles,}
     return render(request,'articles/index.html', context)
 
@@ -211,3 +219,14 @@ def hashtag(request, hash_pk):
     'articles' : articles,
   }
   return render(request, 'articles/hashtag.html', context)
+
+def search(request):
+    # 사용자가 입력한 검색어 가져오기
+    query = request.GET.get('query')
+    # DB에서 query가 포함된 제목을 가진 artice 가져오기 (LIKE)
+    # __contatins : 지정한 문자열 포함하는 자료검색
+    # __icontains : 지정한 문자열 포함하는 자료검색(대소문자 구별 X)
+    articles = Article.objects.filter(title__icontains=query)
+    # context로 전달
+    context = {'articles': articles}
+    return render(request, 'articles/search.html',context)

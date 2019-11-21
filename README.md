@@ -66,6 +66,7 @@
             - Many to One
             - Many to Many
         - [Like / Profile / Follow](./13.hphk_django_model_relationship.md)
+        - [Pagination & Search](./18.hphk_django_pagination_search.md)
 
 - JavaScript
   - [JavaScript Syntax basics](./15.hphk_javascript.md)
